@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.atmostadam.cats</groupId>
-	<artifactId>cats-drools</artifactId>
+	<artifactId>cats-jbpm</artifactId>
 	<version>${revision}</version>
-	<name>cats-drools</name>
-	<description>Cats Drools Implementation for Therapy Cat Charity Organization</description>
+	<name>cats-jbpm</name>
+	<description>Cats Jbpm Implementation for Therapy Cat Charity Organization</description>
 	<url>atmostadam.com</url>
 
 	<parent>
@@ -115,9 +115,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>cats-drools</id>
-			<name>cats-drools</name>
-			<url>https://maven.pkg.github.com/atmostadam/cats-drools</url>
+			<id>cats-jbpm</id>
+			<name>cats-jbpm</name>
+			<url>https://maven.pkg.github.com/atmostadam/cats-jbpm</url>
 		</repository>
 	</distributionManagement>
 </project>

@@ -39,7 +39,7 @@ public class CatJbpmService {
 
     @PostConstruct
     public void setup() {
-        String containerId = "kjar:10.10.01";
+        String containerId = "cats-kjar:0.0.10";
         //ReleaseId releaseId = new ReleaseId(buildProperties.getGroup(), buildProperties.getArtifact(),
         //        buildProperties.getVersion());
         //KieContainerResource container =
