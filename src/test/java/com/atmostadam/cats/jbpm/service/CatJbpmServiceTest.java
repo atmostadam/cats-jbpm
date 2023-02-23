@@ -2,23 +2,34 @@ package com.atmostadam.cats.jbpm.service;
 
 import com.atmostadam.cats.api.model.in.CatRequest;
 import com.atmostadam.cats.api.model.out.CatResponse;
-import com.atmostadam.cats.jbpm.test.CatJbpmConfigurationTest;
+import com.atmostadam.cats.jbpm.configuration.CatJbpmConfiguration;
+import com.atmostadam.cats.jbpm.configuration.CatJbpmTestConfiguration;
+import org.jbpm.test.JbpmJUnitBaseTestCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static com.atmostadam.cats.test.data.CatTestData.staticCatRequest;
-import static com.atmostadam.cats.test.data.CatTestData.staticCatResponse;
+import static com.atmostadam.cats.framework.data.CatTestValues.catRequestTestData;
+import static com.atmostadam.cats.framework.data.CatTestValues.catResponseTestData;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 
-//@SpringJUnitConfig({CatJbpmConfigurationTest.class})
-class CatJbpmServiceTest {
-    //@Autowired
+@SpringJUnitConfig(CatJbpmTestConfiguration.class)
+class CatJbpmServiceTest extends JbpmJUnitBaseTestCase {
+    @Autowired
+    ApplicationContext applicationContext;
+    @Autowired
     CatJbpmService service;
 
     @Test
-    void testFireAllRules() throws Exception {
-        CatRequest catRequest = staticCatRequest();
-        CatResponse catResponse = staticCatResponse();
+    void testInjection() throws Exception {
+        assertThat(applicationContext, notNullValue());
+        assertThat(service, notNullValue());
+
+
+        CatRequest catRequest = catRequestTestData();
+        CatResponse catResponse = catResponseTestData();
 
     }
 }
