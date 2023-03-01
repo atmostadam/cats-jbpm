@@ -1,34 +1,39 @@
 package com.atmostadam.cats.jbpm.bpmn;
 
 import com.atmostadam.cats.jbpm.process.CatJbpmWorkItemHandler;
-import org.jbpm.test.JbpmJUnitBaseTestCase;
+import com.atmostadam.cats.jbpm.test.CatJbpmJUnitBaseTestCase;
 import org.junit.jupiter.api.Test;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.process.ProcessInstance;
 
-public class OnboardCatUnitTest extends JbpmJUnitBaseTestCase {
-    public OnboardCatUnitTest() {
-        super(false, false);
-    }
-
+public class OnboardCatUnitTest extends CatJbpmJUnitBaseTestCase {
     @Test
     void onboardCat() {
-        createRuntimeManager("onboard_cat.bpmn2");
+        runtimeManager = createRuntimeManager("onboard_cat.bpmn2");
 
-        RuntimeEngine runtimeEngine = getRuntimeEngine();
+        runtimeEngine = getRuntimeEngine();
 
         KieSession ksession = runtimeEngine.getKieSession();
 
-        CatJbpmWorkItemHandler handler = new CatJbpmWorkItemHandler(ksession);
-
-        ksession.getWorkItemManager().registerWorkItemHandler("CatTask", handler);
+        ksession.getWorkItemManager().registerWorkItemHandler("CatTask", new CatJbpmWorkItemHandler(ksession));
 
         ProcessInstance processInstance = ksession.startProcess("onboard_cat");
 
-
         assertProcessInstanceNotActive(processInstance.getId(), ksession);
 
+        fireProcess("onboard_cat");
+
+        assertProcess();
+
+        assertProcessStart();
+
+        assertProcessEnd();
+
+        assertNodeStart();
+
+        assertNodeEnd();
+
+        assertNode();
 
         assertNodeTriggered(processInstance.getId(),
                 "Start",
