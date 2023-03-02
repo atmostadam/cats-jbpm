@@ -13,11 +13,20 @@ public class CatProcessEventListener implements ProcessEventListener {
     Logger logger = LoggerFactory.getLogger(CatProcessEventListener.class);
 
     private final List<CatProcessEvent> events = new LinkedList<>();
+    private int position = -1;
+
+    public CatProcessEvent nextEvent() {
+        position++;
+        return events.get(position);
+    }
+
+    public void skipEvent() {
+        position++;
+    }
 
     @Override
     public void beforeProcessStarted(ProcessStartedEvent event) {
         events.add(new CatProcessEvent(BEFORE_PROCESS_STARTED, event));
-        logger.info("JBPM Event [{}]: [{}]", BEFORE_PROCESS_STARTED, event);
     }
 
     @Override

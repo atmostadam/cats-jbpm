@@ -2,7 +2,6 @@ package com.atmostadam.cats.jbpm.service;
 
 import com.atmostadam.cats.api.model.in.CatRequest;
 import com.atmostadam.cats.api.model.out.CatResponse;
-import com.atmostadam.cats.jbpm.configuration.CatJbpmConfiguration;
 import com.atmostadam.cats.jbpm.configuration.CatJbpmTestConfiguration;
 import org.jbpm.test.JbpmJUnitBaseTestCase;
 import org.junit.jupiter.api.Test;
