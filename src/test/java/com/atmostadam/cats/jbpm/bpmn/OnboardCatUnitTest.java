@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.process.ProcessInstance;
 
+import static com.atmostadam.cats.jbpm.test.CatProcessEventAsserts.*;
+
 public class OnboardCatUnitTest extends CatJbpmJUnitBaseTestCase {
     @Test
     void onboardCat() {
@@ -23,17 +25,15 @@ public class OnboardCatUnitTest extends CatJbpmJUnitBaseTestCase {
 
         fireProcess("onboard_cat");
 
-        assertProcess();
+        assertBeforeProcessStarted();
 
-        assertProcessStart();
+        assertAfterProcessStarted();
 
-        assertProcessEnd();
+        // TODO: Assert Nodes
 
-        assertNodeStart();
+        assertBeforeProcessCompleted();
 
-        assertNodeEnd();
-
-        assertNode();
+        assertAfterProcessCompleted();
 
         assertNodeTriggered(processInstance.getId(),
                 "Start",
