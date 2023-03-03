@@ -54,6 +54,24 @@ public class CatProcessEventListener implements ProcessEventListener {
         events.add(new CatProcessEvent(AFTER_NODE_TRIGGERED, event));
     }
 
+    private void addEvent(CatProcessEvent.EventType type, ProcessEvent event) {
+        CatProcessEvent catEvent = new CatProcessEvent(type, event);
+        logger.info("EVENT CAPTURED: " + event);
+        events.add(catEvent);
+    }
+
+    private void addNodeEvent(CatProcessEvent.EventType type, ProcessNodeEvent event) {
+        events.add(new CatProcessEvent(type, event));
+    }
+
+    private void addVariableEvent(CatProcessEvent.EventType type, ProcessVariableChangedEvent event) {
+        events.add(new CatProcessEvent(type, event));
+    }
+
+    private void logEvent(CatProcessEvent event) {
+
+    }
+
     @Override
     public void beforeNodeLeft(ProcessNodeLeftEvent event) {
         events.add(new CatProcessEvent(BEFORE_NODE_LEFT, event));

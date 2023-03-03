@@ -11,18 +11,21 @@ import static org.hamcrest.Matchers.instanceOf;
 public final class CatProcessEventAsserts {
     private CatProcessEventAsserts() { }
 
-    public static final void assertBeforeProcessStarted(CatProcessEventListener listener, String processName) {
+    public static CatProcessEvent assertNext(CatProcessEventListener listener, CatProcessEvent.EventType eventType,
+                                             String processName, Class clazz) {
         CatProcessEvent event = listener.nextEvent();
-        assertThat(event.getEvent(), instanceOf(ProcessStartedEvent.class));
-        assertThat(event.getType(), equalTo(BEFORE_PROCESS_STARTED));
+        assertThat(event.getType(), equalTo(eventType));
         assertThat(event.getProcessName(), equalTo(processName));
+        assertThat(event.getEvent(), instanceOf(clazz));
+        return event;
+    }
+
+    public static void assertBeforeProcessStarted(CatProcessEventListener listener, String processName) {
+        assertNext(listener, BEFORE_PROCESS_STARTED, processName, ProcessStartedEvent.class);
     }
 
     public static final void assertAfterProcessStarted(CatProcessEventListener listener, String processName) {
-        CatProcessEvent event = listener.nextEvent();
-        assertThat(event.getEvent(), instanceOf(ProcessStartedEvent.class));
-        assertThat(event.getType(), equalTo(AFTER_PROCESS_STARTED));
-        assertThat(event.getProcessName(), equalTo(processName));
+        assertNext(listener, AFTER_PROCESS_STARTED, processName, ProcessStartedEvent.class);
     }
 
     public static final void assertBeforeProcessCompleted() {
