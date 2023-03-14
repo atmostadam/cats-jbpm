@@ -43,11 +43,6 @@ jobs:
                 "password": "${{ secrets.CATS_PASSWORD }}"
               },
               {
-                "id": "cats-kjar",
-                "username": "${{ secrets.CATS_USERNAME }}",
-                "password": "${{ secrets.CATS_PASSWORD }}"
-              },
-              {
                 "id": "cats-jbpm",
                 "username": "${{ secrets.CATS_USERNAME }}",
                 "password": "${{ secrets.CATS_PASSWORD }}"

@@ -18,9 +18,8 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<revision>0.0.42</revision>
+		<revision>0.0.43</revision>
 		<kie.version>7.73.0.Final</kie.version>
-		<jacoco.version>0.8.8</jacoco.version>
 	</properties>
 
 	<dependencies>
@@ -80,25 +79,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco.version}</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
 			</plugin>
-			<!--
-			<plugin>
-				<groupId>org.kie</groupId>
-				<artifactId>kie-maven-plugin</artifactId>
-				<version>${kie.version}</version>
-				<extensions>true</extensions>
-				<dependencies>
-					<dependency>
-						<groupId>org.kie</groupId>
-						<artifactId>kie-api</artifactId>
-						<version>${kie.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -120,16 +103,6 @@
 		<repository>
 			<id>cats-framework</id>
 			<url>https://maven.pkg.github.com/atmostadam/cats-framework</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>cats-kjar</id>
-			<url>https://maven.pkg.github.com/atmostadam/cats-kjar</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
